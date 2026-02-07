@@ -35,22 +35,13 @@ const NavBar: React.FC<NavBarProps> = ({ isDark, toggleTheme }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo Altea remplacé par ton image logo.png */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('hero')}>
-          {/* Custom SVG Logo matching the Altea Hexagon Brand */}
-          <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 drop-shadow-md">
-            <defs>
-              <pattern id="stripes-nav" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <rect x="0" y="0" width="10" height="20" fill="#4ADE80" /> {/* Light Green */}
-                <rect x="10" y="0" width="10" height="20" fill="#166534" /> {/* Dark Green */}
-              </pattern>
-            </defs>
-            {/* Hexagon Background with Stripes */}
-            <path d="M50 2L91.569 26V74L50 98L8.43076 74V26L50 2Z" fill="url(#stripes-nav)" stroke="#166534" strokeWidth="2"/>
-            {/* The 'A' Shape */}
-            <path d="M50 22L78 82H64L50 52L36 82H22L50 22Z" fill="white"/>
-          </svg>
-          
+          <img 
+            src="/logo.png" 
+            alt="Altea Logo" 
+            className="h-10 w-auto object-contain drop-shadow-md" 
+          />
           <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
             ALTEA
           </span>
