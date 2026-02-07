@@ -8,14 +8,10 @@ import Footer from './components/Footer';
 import { LawnType, ServiceType } from './types';
 
 const App: React.FC = () => {
-  // Theme State
   const [isDark, setIsDark] = useState<boolean>(false);
-
-  // Booking Form Pre-fill State
   const [selectedLawnType, setSelectedLawnType] = useState<LawnType>('detache');
   const [selectedServiceType, setSelectedServiceType] = useState<ServiceType>('tonte');
 
-  // Theme Toggle Effect
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -29,7 +25,6 @@ const App: React.FC = () => {
   const handlePlanSelection = (type: LawnType, service: ServiceType) => {
     setSelectedLawnType(type);
     setSelectedServiceType(service);
-    // Modified Flow: Scroll to Promos first so users see the discounts before booking
     const promosSection = document.getElementById('promos');
     if (promosSection) {
       promosSection.scrollIntoView({ behavior: 'smooth' });
@@ -46,26 +41,27 @@ const App: React.FC = () => {
 
       <NavBar isDark={isDark} toggleTheme={toggleTheme} />
 
-      {/* Hero Section */}
-      <section id="hero" className="relative h-[85vh] flex items-center justify-center overflow-hidden bg-emerald-900">
-        {/* Background - High Quality Lawn Image */}
+      {/* Hero Section corrigée avec ton image fond-herbe.jpg */}
+      <section id="hero" className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        {/* Background - Utilisation de ton fichier fond-herbe.jpg */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1628035138862-2917ccf1388e?q=80&w=2834&auto=format&fit=crop" 
-            alt="Pelouse résidentielle parfaitement coupée avec rayures" 
+            src="/fond-herbe.jpg" 
+            alt="Pelouse résidentielle Altea" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/20 dark:bg-black/40 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-80"></div>
+          {/* Superposition pour la lisibilité du texte */}
+          <div className="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-60"></div>
         </div>
 
         <div className="relative z-10 text-center max-w-4xl px-6 mt-16">
-          <div className="flex items-center justify-center gap-1 mb-6 animate-fade-in-up">
+          <div className="flex items-center justify-center gap-1 mb-6">
             {[1,2,3,4,5].map(i => <Star key={i} size={16} className="text-altea-green fill-altea-green" />)}
             <span className="text-gray-200 text-xs font-semibold ml-2 tracking-widest uppercase">Service 5 Étoiles</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight shadow-sm drop-shadow-lg">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-xl">
             Tonte de gazon. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Simplifiée.</span>
           </h1>
@@ -87,14 +83,11 @@ const App: React.FC = () => {
       </section>
 
       <Pricing onSelectPlan={handlePlanSelection} />
-      
       <Promos />
-      
       <BookingForm 
         initialLawnType={selectedLawnType} 
         initialServiceType={selectedServiceType} 
       />
-      
       <Footer />
     </div>
   );
